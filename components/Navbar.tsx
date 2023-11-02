@@ -50,11 +50,11 @@ const Navbar = () => {
             </div>
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
-                <img
+                {/* <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="Your Company"
-                />
+                  src=""
+                  alt="Nsocks"
+                /> */}
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
@@ -63,25 +63,37 @@ const Navbar = () => {
                     className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
-                    Dashboard
+                    Proxy
                   </a>
                   <a
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
-                    Team
+                    History
+                  </a>
+                  <a
+                    href="/payments"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    Payments
                   </a>
                   <a
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
-                    Projects
+                    Support
                   </a>
                   <a
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
-                    Calendar
+                    News
+                  </a>
+                  <a
+                    href="/"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    Terms
                   </a>
                 </div>
               </div>
@@ -128,7 +140,7 @@ const Navbar = () => {
                   </button>
                 </div>
 
-                <div
+                {/* <div
                   className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
@@ -162,7 +174,7 @@ const Navbar = () => {
                   >
                     Sign out
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
