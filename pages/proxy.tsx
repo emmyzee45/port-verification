@@ -15,77 +15,85 @@ const Payments: FC = () => {
 
   const countryStates: CountryStateProps = {
     USA: [
-      { name: "AK", count: 8},
-      { name: "AL", count: 210},
-      { name: "AR", count: 39},
-      { name: "AZ", count: 945},
-      { name: "CA", count: 2588},
-      { name: "CO", count: 191},
-      { name: "CT", count: 223},
-      { name: "DC", count: 51},
-      { name: "DE", count: 29},
-      { name: "FL", count: 1049},
-      { name: "GA", count: 747},
-      { name: "HI", count: 113},
-      { name: "IA", count: 519},
-      { name: "ID", count: 183},
-      { name: "IL", count: 422},
-      { name: "IN", count: 278},
-      { name: "KS", count: 170},
-      { name: "KY", count: 92},
-      { name: "LA", count: 130},
-      { name: "MA", count: 199},
-      { name: "MD", count: 223},
-      { name: "ME", count: 385},
-      { name: "MI", count: 748},
-      { name: "MN", count: 392},
-      { name: "MO", count: 190},
-      { name: "MS", count: 70},
-      { name: "MT", count: 27},
-      { name: "NC", count: 446},
-      { name: "ND", count: 38},
-      { name: "NE", count: 64},
-      { name: "NH", count: 351},
-      { name: "NJ", count: 431},
-      { name: "NM", count: 27},
-      { name: "NV", count: 190},
-      { name: "NY", count: 879},
-      { name: "OH", count: 454},
-      { name: "OK", count: 283},
-      { name: "OR", count: 125},
-      { name: "PA", count: 621},
-      { name: "RI", count: 89},
-      { name: "SC", count: 2275},
-      { name: "SD", count: 42},
-      { name: "TN", count: 2047},
-      { name: "TX", count: 1293},
-      { name: "UN", count: 12},
-      { name: "UT", count: 430},
-      { name: "VA", count: 809},
-      { name: "VT", count: 252},
-      { name: "WA", count: 248},
+      { name: "AK", count: 8 },
+      { name: "AL", count: 210 },
+      { name: "AR", count: 39 },
+      { name: "AZ", count: 945 },
+      { name: "CA", count: 2588 },
+      { name: "CO", count: 191 },
+      { name: "CT", count: 223 },
+      { name: "DC", count: 51 },
+      { name: "DE", count: 29 },
+      { name: "FL", count: 1049 },
+      { name: "GA", count: 747 },
+      { name: "HI", count: 113 },
+      { name: "IA", count: 519 },
+      { name: "ID", count: 183 },
+      { name: "IL", count: 422 },
+      { name: "IN", count: 278 },
+      { name: "KS", count: 170 },
+      { name: "KY", count: 92 },
+      { name: "LA", count: 130 },
+      { name: "MA", count: 199 },
+      { name: "MD", count: 223 },
+      { name: "ME", count: 385 },
+      { name: "MI", count: 748 },
+      { name: "MN", count: 392 },
+      { name: "MO", count: 190 },
+      { name: "MS", count: 70 },
+      { name: "MT", count: 27 },
+      { name: "NC", count: 446 },
+      { name: "ND", count: 38 },
+      { name: "NE", count: 64 },
+      { name: "NH", count: 351 },
+      { name: "NJ", count: 431 },
+      { name: "NM", count: 27 },
+      { name: "NV", count: 190 },
+      { name: "NY", count: 879 },
+      { name: "OH", count: 454 },
+      { name: "OK", count: 283 },
+      { name: "OR", count: 125 },
+      { name: "PA", count: 621 },
+      { name: "RI", count: 89 },
+      { name: "SC", count: 2275 },
+      { name: "SD", count: 42 },
+      { name: "TN", count: 2047 },
+      { name: "TX", count: 1293 },
+      { name: "UN", count: 12 },
+      { name: "UT", count: 430 },
+      { name: "VA", count: 809 },
+      { name: "VT", count: 252 },
+      { name: "WA", count: 248 },
     ],
     America: [
-      { name: "AG", count: 1,},
-      { name: "AR", count: 62, },
-      { name: "AW", count: 3, },
+      { name: "AG", count: 1 },
+      { name: "AR", count: 62 },
+      { name: "AW", count: 3 },
     ],
-    Europe: [{ name: "WA", count: 248}],
-    "AU, Oceania": [{ name: "WA", count: 248}],
-    Asia: [{ name: "WA", count: 248}],
-    Africa: [{ name: "WA", count: 248}],
+    Europe: [
+        { name: "WA", count: 248 }
+    ],
+    "AU, Oceania": [
+        { name: "WA", count: 248 }
+    ],
+    Asia: [
+        { name: "WA", count: 248 }
+    ],
+    Africa: [
+        { name: "WA", count: 248 }
+    ],
   };
 
   const refresh = (country: string, state: string) => {
-    // refresh logic here
+    // will make refresh logic here later
   };
 
   const setInactiveRegions = () => {
-    // Your logic to set inactive regions
+    // will do logic to set inactive regions here
   };
 
   const zipArea = (type?: string) => {
-    // Your zipArea logic here
+    // zipArea logic will be here
   };
 
   const setActiveCountryState = (country: string, state: string) => {
