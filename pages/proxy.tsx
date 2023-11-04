@@ -102,6 +102,10 @@ const Payments: FC = () => {
     refresh(country, state);
   };
 
+    function resetFilters(): void {
+        throw new Error("Function not implemented.");
+    }
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex">
@@ -179,6 +183,7 @@ const Payments: FC = () => {
                         }`}
                         tabIndex={0}
                         role="button"
+                        style={{ flex: "0 0 calc(9.09090909090909% - 10px)" }}
                       >
                         <div>
                           {region.name} - {region.count}
@@ -189,6 +194,66 @@ const Payments: FC = () => {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2">
+          <div className="filter mt-2 mb-2">
+            <div className="col-filter">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  id="excludeUsedFilter"
+                  type="checkbox"
+                  value=""
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="excludeUsedFilter"
+                >
+                  Exclude used proxies
+                </label>
+              </div>
+            </div>
+            <div className="col-filter">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  id="excludeBlacklistedFilter"
+                  type="checkbox"
+                  value=""
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="excludeBlacklistedFilter"
+                >
+                  Exclude blacklisted proxies
+                </label>
+              </div>
+            </div>
+            <div className="col-filter">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  id="residentialFilter"
+                  type="checkbox"
+                  value=""
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="residentialFilter"
+                >
+                  Residential only proxies
+                </label>
+              </div>
+            </div>
+
+            <div className="col-filter">
+              <div className="form-check">
+                <a href="#" onClick={() => resetFilters()}>
+                  reset filters
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
