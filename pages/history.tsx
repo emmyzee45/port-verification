@@ -22,56 +22,26 @@ const History: FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex flex-col">
-        <div className="table-responsive w-3/4 px-5 mt-4 bg-gray-200 py-2">
-          <table className="items table table-hover table-sm" id="socks">
-            <thead className="flex space-x-10">
-              {headers.map(({ label, sortBy }) => (
-                <th key={sortBy} className="flex-1">
-                  <a
-                    className="sort-link"
-                    href="#"
-                    // onClick={() => setSort(sortBy)}
-                  >
-                    {label}
-                  </a>
-                </th>
-              ))}
-            </thead>
-          </table>
-        </div>
-
-        {/* <tbody id="main-list">
-            {proxyDetails.map((proxy) => (
-              <tr
-                key={proxy.id}
-                className={`proxy-row ${
-                  activeProxy === proxy.id ? "active" : ""
-                }`}
-                onClick={() => setActiveProxy(proxy.id)}
-              >
-                {Object.keys(proxy).map((key) => (
-                  <td key={key}>{renderProxyDetail(proxy, key)}</td>
-                ))}
-              </tr>
+      <div className="table-responsive px-5 mt-4 bg-gray-200 py-2">
+        <table className="items table table-hover table-sm" id="socks">
+          <thead className="flex space-x-20">
+            {headers.map(({ label, sortBy }) => (
+              <th key={sortBy} className="flex-1">
+                <a
+                  className="sort-link"
+                  href="#"
+                  // onClick={() => setSort(sortBy)}
+                >
+                  {label}
+                </a>
+              </th>
             ))}
-          </tbody> */}
-        <div className="filter mt-2 mb-2 ml-auto">
-          <div className="filter">
-            <div className="col-filter">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="excludeUsedFilter"
-                  type="checkbox"
-                  value=""
-                />
-                <label className="form-check-label" htmlFor="excludeUsedFilter">
-                  Exclude used proxies
-                </label>
-              </div>
-            </div>
-          </div>
+          </thead>
+        </table>
+      </div>
+      <div className="flex justify-between items-center mt-2 mb-2">
+        <div className="filter">
+          {/* ... Filter checkboxes and reset link ... */}
         </div>
       </div>
       <div className="pagination-container mt-4 flex justify-end">
