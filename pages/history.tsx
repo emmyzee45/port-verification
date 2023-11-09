@@ -1,7 +1,7 @@
 import ReactPaginate from "react-paginate";
 import { FC, useState } from "react";
-import { headers } from "./lib/headers";
-import { proxyDetails } from "./lib/proxyDetails";
+import { headers } from "../components/lib/headers";
+import { proxyDetails } from "../components/lib/proxyDetails";
 
 const History: FC = () => {
   function resetFilters(): void {
@@ -37,6 +37,83 @@ const History: FC = () => {
               </th>
             ))}
           </thead>
+          <tbody>
+            <tr>
+              <td className="flex justify-between items-center">
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+
+                <div className="my-3">
+                  <select id={`select-${"hipe"}`} className="form-select">
+                    <option value="">Select...</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div className="flex justify-between items-center mt-2 mb-2">
