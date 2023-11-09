@@ -1,7 +1,7 @@
 import ReactPaginate from "react-paginate";
 import { FC, useState } from "react";
-import { proxyHeaders } from "./lib/tableHeaders";
-import { proxyDetails } from "./lib/proxyDetails";
+import { proxyHeaders } from "../components/lib/tableHeaders";
+import { proxyDetails } from "../components/lib/proxyDetails";
 
 interface StateProps {
   name: string;
