@@ -1,4 +1,7 @@
+import ReactPaginate from "react-paginate";
 import { FC, useState } from "react";
+import { headers } from "./lib/tableHeaders";
+import { proxyDetails } from "./lib/proxyDetails";
 
 interface StateProps {
   name: string;
@@ -9,7 +12,23 @@ interface CountryStateProps {
   [key: string]: StateProps[];
 }
 
+interface ProxyData {
+  id: string;
+  ip: string;
+  domain: string;
+  state: string;
+  city: string;
+  isp: string;
+  zip: string;
+  speed: string;
+  ping: number;
+  type: string;
+  added: string;
+  price: number;
+}
+
 const Payments: FC = () => {
+  const [activeProxy, setActiveProxy] = useState<string | null>(null);
   const [activeCountry, setActiveCountry] = useState<string>("USA");
   const [activeState, setActiveState] = useState<string>("");
 
@@ -70,18 +89,10 @@ const Payments: FC = () => {
       { name: "AR", count: 62 },
       { name: "AW", count: 3 },
     ],
-    Europe: [
-        { name: "WA", count: 248 }
-    ],
-    "AU, Oceania": [
-        { name: "WA", count: 248 }
-    ],
-    Asia: [
-        { name: "WA", count: 248 }
-    ],
-    Africa: [
-        { name: "WA", count: 248 }
-    ],
+    Europe: [{ name: "WA", count: 248 }],
+    "AU, Oceania": [{ name: "WA", count: 248 }],
+    Asia: [{ name: "WA", count: 248 }],
+    Africa: [{ name: "WA", count: 248 }],
   };
 
   const refresh = (country: string, state: string) => {
@@ -102,56 +113,68 @@ const Payments: FC = () => {
     refresh(country, state);
   };
 
-    function resetFilters(): void {
-        throw new Error("Function not implemented.");
+  function resetFilters(): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setSort(sortBy: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  const renderProxyDetail = (proxy: ProxyData, key: string) => {
+    const proxyKey = key as keyof ProxyData;
+
+    if (proxyKey === "ip") {
+      return (
+        <div>
+          <div className="pull-left flag flag-us mt-[3px]">&nbsp;</div>
+          <div id={`ip_${proxy.id}`}>{proxy[proxyKey]}</div>
+        </div>
+      );
     }
+
+    return <div id={`${key}_${proxy.id}`}>{proxy[proxyKey]}</div>;
+  };
+
+  const perPage = 20;
+  const pageCount = Math.ceil(proxyDetails.length / perPage);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const handlePageClick = (data: { selected: number }) => {
+    setCurrentPage(data.selected);
+  };
+
+  const paginatedData = proxyDetails.slice(
+    currentPage * perPage,
+    (currentPage + 1) * perPage
+  );
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex">
-        <div className="w-1/4 pr-4">
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-1/4 pr-0 lg:pr-4 mb-4 lg:mb-0">
           <div className="sticky top-0">
             <div className="mb-4">
-              <style>{`
-                .country-active,
-                .state-active {
-                    background: #0d6efd;
-                    color: #ffffff;
-                }
-
-                .country-wrapper {
-                    width: 150px; // Adjust the width as needed
-                }
-
-                .country-button {
-                    width: 100%;
-                    overflow: hidden;
-                }
-                `}</style>
-              <div
-                className="nav flex-column nav-pills countries"
-                role="tablist"
-                aria-orientation="vertical"
-              >
+              {/* ... (Previous code) */}
+              <div className="flex flex-wrap">
                 {Object.keys(countryStates).map((country) => (
-                  <div key={country} className="country-wrapper">
-                    <button
-                      onClick={() => {
-                        refresh(country, "empty");
-                        setInactiveRegions();
-                        zipArea("on");
-                        setActiveCountryState(country, "");
-                      }}
-                      className={`w-full text-left p-2 mb-2 rounded focus:outline-none country-button ${
-                        activeCountry === country
-                          ? "bg-blue-500 text-white"
-                          : "bg-gray-200"
-                      }`}
-                      tabIndex={0}
-                    >
-                      {country} <span>{countryStates[country].length}</span>
-                    </button>
-                  </div>
+                  <button
+                    key={country}
+                    onClick={() => {
+                      refresh(country, "empty");
+                      setInactiveRegions();
+                      zipArea("on");
+                      setActiveCountryState(country, "");
+                    }}
+                    className={`w-full text-left p-2 mb-2 rounded focus:outline-none country-button ${
+                      activeCountry === country
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200"
+                    }`}
+                    tabIndex={0}
+                  >
+                    {country} <span>{countryStates[country].length}</span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -196,8 +219,8 @@ const Payments: FC = () => {
             ))}
           </div>
         </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2">
-          <div className="filter mt-2 mb-2">
+        <div className="w-full lg:w-1/4 mt-4 lg:mt-0">
+          <div className="filter">
             <div className="col-filter">
               <div className="form-check">
                 <input
@@ -206,10 +229,7 @@ const Payments: FC = () => {
                   type="checkbox"
                   value=""
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="excludeUsedFilter"
-                >
+                <label className="form-check-label" htmlFor="excludeUsedFilter">
                   Exclude used proxies
                 </label>
               </div>
@@ -238,10 +258,7 @@ const Payments: FC = () => {
                   type="checkbox"
                   value=""
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="residentialFilter"
-                >
+                <label className="form-check-label" htmlFor="residentialFilter">
                   Residential only proxies
                 </label>
               </div>
@@ -249,13 +266,70 @@ const Payments: FC = () => {
 
             <div className="col-filter">
               <div className="form-check">
-                <a href="#" onClick={() => resetFilters()}>
+                <a href="#" className="text-blue-600" onClick={() => resetFilters()}>
                   reset filters
                 </a>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="table-responsive mt-4">
+        <table className="items table table-hover table-sm" id="socks">
+          <thead className="hidden lg:table-header-group">
+            {headers.map(({ label, sortBy }) => (
+              <th key={sortBy}>
+                <a
+                  className="sort-link"
+                  href="#"
+                  onClick={() => setSort(sortBy)}
+                >
+                  {label}
+                </a>
+                {["IP", "DOMAIN", "STATE", "CITY", "ISP", "ZIP"].includes(
+                  label
+                ) && (
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={`Enter ${label}`}
+                  />
+                )}
+              </th>
+            ))}
+          </thead>
+          <tbody id="main-list">
+            {proxyDetails.map((proxy) => (
+              <tr
+                key={proxy.id}
+                className={`proxy-row ${
+                  activeProxy === proxy.id ? "active" : ""
+                }`}
+                onClick={() => setActiveProxy(proxy.id)}
+              >
+                {Object.keys(proxy).map((key) => (
+                  <td key={key}>{renderProxyDetail(proxy, key)}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="pagination-container mt-4 flex justify-end">
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination flex"}
+          previousLinkClassName={"pagination-link mr-2 p-2 active bg-blue-500 text-white"}
+          nextLinkClassName={"pagination-link ml-2 p-2 hover:bg-gray-200"}
+          activeClassName={"active bg-blue-500 px-2 text-white"}
+        />
       </div>
     </div>
   );
