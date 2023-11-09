@@ -351,8 +351,6 @@ const Payments: FC = () => {
       </div>
       <div className="pagination-container mt-4 flex justify-end">
         <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
           breakLabel={"..."}
           breakClassName={"break-me"}
           pageCount={pageCount}
