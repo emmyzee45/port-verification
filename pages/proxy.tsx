@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate";
 import { FC, useState } from "react";
-import { headers } from "./lib/tableHeaders";
+import { proxyHeaders } from "./lib/tableHeaders";
 import { proxyDetails } from "./lib/proxyDetails";
 
 interface StateProps {
@@ -151,124 +151,156 @@ const Payments: FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/4 pr-0 lg:pr-4 mb-4 lg:mb-0">
-          <div className="sticky top-0">
-            <div className="mb-4">
-              {/* ... (Previous code) */}
-              <div className="flex flex-wrap">
-                {Object.keys(countryStates).map((country) => (
-                  <button
-                    key={country}
-                    onClick={() => {
-                      refresh(country, "empty");
-                      setInactiveRegions();
-                      zipArea("on");
-                      setActiveCountryState(country, "");
-                    }}
-                    className={`w-full text-left p-2 mb-2 rounded focus:outline-none country-button ${
-                      activeCountry === country
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    }`}
-                    tabIndex={0}
-                  >
-                    {country} <span>{countryStates[country].length}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex-grow">
-          <div className="tab-content" id="v-pills-tabContent">
-            {Object.keys(countryStates).map((country) => (
-              <div
-                key={country}
-                className={`tab-pane fade ${
-                  activeCountry === country ? "active show" : ""
-                }`}
-                role="tabpanel"
-                aria-labelledby={`v-pills-${country.toLowerCase()}-tab`}
-              >
-                {activeCountry === country && (
-                  <div className="flex flex-wrap">
-                    {countryStates[country].map((region) => (
-                      <div
-                        key={region.name}
-                        onClick={() =>
-                          setActiveCountryState(country, region.name)
-                        }
-                        className={`state p-2 mb-2 mr-2 rounded cursor-pointer ${
-                          activeState === region.name
-                            ? "state-active"
+      <div className="container mx-auto p-4">
+        <div className="flex">
+          <div className="w-1/4 pr-4">
+            <div className="sticky top-0">
+              <div className="mb-4">
+                <style>{`
+                .country-active,
+                .state-active {
+                    background: #0d6efd;
+                    color: #ffffff;
+                }
+
+                .country-wrapper {
+                    width: 150px; // Adjust the width as needed
+                }
+
+                .country-button {
+                    width: 100%;
+                    overflow: hidden;
+                }
+                `}</style>
+                <div
+                  className="nav flex-column nav-pills countries"
+                  role="tablist"
+                  aria-orientation="vertical"
+                >
+                  {Object.keys(countryStates).map((country) => (
+                    <div key={country} className="country-wrapper">
+                      <button
+                        onClick={() => {
+                          refresh(country, "empty");
+                          setInactiveRegions();
+                          zipArea("on");
+                          setActiveCountryState(country, "");
+                        }}
+                        className={`w-full text-left p-2 mb-2 rounded focus:outline-none country-button ${
+                          activeCountry === country
+                            ? "bg-blue-500 text-white"
                             : "bg-gray-200"
                         }`}
                         tabIndex={0}
-                        role="button"
-                        style={{ flex: "0 0 calc(9.09090909090909% - 10px)" }}
                       >
-                        <div>
-                          {region.name} - {region.count}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                        {country} <span>{countryStates[country].length}</span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-        <div className="w-full lg:w-1/4 mt-4 lg:mt-0">
-          <div className="filter">
-            <div className="col-filter">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="excludeUsedFilter"
-                  type="checkbox"
-                  value=""
-                />
-                <label className="form-check-label" htmlFor="excludeUsedFilter">
-                  Exclude used proxies
-                </label>
-              </div>
-            </div>
-            <div className="col-filter">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="excludeBlacklistedFilter"
-                  type="checkbox"
-                  value=""
-                />
-                <label
-                  className="form-check-label"
-                  htmlFor="excludeBlacklistedFilter"
+          <div className="flex-grow">
+            <div className="tab-content" id="v-pills-tabContent">
+              {Object.keys(countryStates).map((country) => (
+                <div
+                  key={country}
+                  className={`tab-pane fade ${
+                    activeCountry === country ? "active show" : ""
+                  }`}
+                  role="tabpanel"
+                  aria-labelledby={`v-pills-${country.toLowerCase()}-tab`}
                 >
-                  Exclude blacklisted proxies
-                </label>
-              </div>
+                  {activeCountry === country && (
+                    <div className="flex flex-wrap">
+                      {countryStates[country].map((region) => (
+                        <div
+                          key={region.name}
+                          onClick={() =>
+                            setActiveCountryState(country, region.name)
+                          }
+                          className={`state p-2 mb-2 mr-2 rounded cursor-pointer ${
+                            activeState === region.name
+                              ? "state-active"
+                              : "bg-gray-200"
+                          }`}
+                          tabIndex={0}
+                          role="button"
+                          style={{ flex: "0 0 calc(9.09090909090909% - 10px)" }}
+                        >
+                          <div>
+                            {region.name} - {region.count}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="col-filter">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="residentialFilter"
-                  type="checkbox"
-                  value=""
-                />
-                <label className="form-check-label" htmlFor="residentialFilter">
-                  Residential only proxies
-                </label>
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2">
+            <div className="filter mt-2 mb-2">
+              <div className="col-filter">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    id="excludeUsedFilter"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="excludeUsedFilter"
+                  >
+                    Exclude used proxies
+                  </label>
+                </div>
               </div>
-            </div>
+              <div className="col-filter">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    id="excludeBlacklistedFilter"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="excludeBlacklistedFilter"
+                  >
+                    Exclude blacklisted proxies
+                  </label>
+                </div>
+              </div>
+              <div className="col-filter">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    id="residentialFilter"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="residentialFilter"
+                  >
+                    Residential only proxies
+                  </label>
+                </div>
+              </div>
 
-            <div className="col-filter">
-              <div className="form-check">
-                <a href="#" className="text-blue-600" onClick={() => resetFilters()}>
-                  reset filters
-                </a>
+              <div className="col-filter">
+                <div className="form-check">
+                  <a
+                    href="#"
+                    className="text-blue-600"
+                    onClick={() => resetFilters()}
+                  >
+                    reset filters
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -277,7 +309,7 @@ const Payments: FC = () => {
       <div className="table-responsive mt-4">
         <table className="items table table-hover table-sm" id="socks">
           <thead className="hidden lg:table-header-group">
-            {headers.map(({ label, sortBy }) => (
+            {proxyHeaders.map(({ label, sortBy }) => (
               <th key={sortBy}>
                 <a
                   className="sort-link"
@@ -326,7 +358,9 @@ const Payments: FC = () => {
           pageRangeDisplayed={5}
           onPageChange={handlePageClick}
           containerClassName={"pagination flex"}
-          previousLinkClassName={"pagination-link mr-2 p-2 active bg-blue-500 text-white"}
+          previousLinkClassName={
+            "pagination-link mr-2 p-2 active bg-blue-500 text-white"
+          }
           nextLinkClassName={"pagination-link ml-2 p-2 hover:bg-gray-200"}
           activeClassName={"active bg-blue-500 px-2 text-white"}
         />
