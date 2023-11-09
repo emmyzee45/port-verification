@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -58,43 +59,43 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  <a
+                  <Link
                     href="/proxy"
                     className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
                     Proxy
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    href="/history"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     History
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/payments"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     Payments
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     Support
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     News
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     Terms
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
