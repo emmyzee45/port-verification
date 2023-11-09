@@ -308,28 +308,30 @@ const Payments: FC = () => {
       </div>
       <div className="table-responsive mt-4">
         <table className="items table table-hover table-sm" id="socks">
-          <thead className="hidden lg:table-header-group">
-            {proxyHeaders.map(({ label, sortBy }) => (
-              <th key={sortBy}>
-                <a
-                  className="sort-link"
-                  href="#"
-                  onClick={() => setSort(sortBy)}
-                >
-                  {label}
-                </a>
-                {["IP", "DOMAIN", "STATE", "CITY", "ISP", "ZIP"].includes(
-                  label
-                ) && (
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={`Enter ${label}`}
-                  />
-                )}
-              </th>
-            ))}
-          </thead>
+          {typeof window !== "undefined" && (
+            <thead className="hidden bg-gray-200 lg:table-header-group">
+              {proxyHeaders.map(({ label, sortBy }) => (
+                <th key={sortBy}>
+                  <a
+                    className="sort-link px-2 py-5"
+                    href="#"
+                    onClick={() => setSort(sortBy)}
+                  >
+                    {label}
+                  </a>
+                  {["IP", "DOMAIN", "STATE", "CITY", "ISP", "ZIP"].includes(
+                    label
+                  ) && (
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder={`Enter ${label}`}
+                    />
+                  )}
+                </th>
+              ))}
+            </thead>
+          )}
           <tbody id="main-list">
             {proxyDetails.map((proxy) => (
               <tr
